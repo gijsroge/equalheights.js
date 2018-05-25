@@ -5,17 +5,18 @@ const path = require('path');
 const env = require('yargs').argv.env; // use --env with webpack 2
 const pkg = require('./package.json');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 let libraryName = pkg.name;
 
 if (env === 'build') {
-  outputFile = `${libraryName}.min`;
+  outputFile = `${libraryName}.min.[ext]`;
 } else {
   outputFile = libraryName;
 }
 
 const config = {
-  entry: __dirname + '/src/index.js',
+  entry: `${__dirname}/src/index.js`,
   devtool: 'source-map',
   mode: env === 'build' ? 'production' : 'development',
   output: {
@@ -33,9 +34,8 @@ const config = {
         exclude: /(node_modules|bower_components)/
       },
       {
-        test: /(\.jsx|\.js)$/,
-        loader: 'eslint-loader',
-        exclude: /node_modules/
+        test: /\.scss$/,
+        use: [ 'style-loader', 'postcss-loader' ]
       }
     ]
   },
@@ -46,8 +46,11 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Custom template',
-      // Load a custom template (lodash by default see the FAQ for details)
       template: 'index.html'
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css"
     })
   ]
 };
