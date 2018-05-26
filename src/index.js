@@ -19,7 +19,7 @@ export default class EqualHeight {
     this.bindEvents();
   }
 
-  calculate(){
+  calculate() {
     // Create array of rows
     this.rows = this.getRows();
 
@@ -32,8 +32,10 @@ export default class EqualHeight {
     this.groupedRowItems.forEach(row => row.forEach(this.setHeight));
   }
 
-  setHeight(items){
-
+  /**
+   * Apply heights on our row items
+   */
+  setHeight(items) {
     // Reset height, so we can calculate again
     items.forEach(item => {
       item.style.height = 'auto';
@@ -49,6 +51,7 @@ export default class EqualHeight {
       item.style.height = maxHeight;
     })
   }
+
   /**
    * Get items from the same group in a row
    */
@@ -71,7 +74,6 @@ export default class EqualHeight {
           return rowItem.element.querySelector(`[data-equal-height="${groupName}"]`);
         })
       })
-
     );
   }
 
