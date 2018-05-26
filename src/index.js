@@ -1,7 +1,8 @@
 import 'index.scss';
 import offset from 'document-offset';
-import {groupBy} from 'underscore';
+import {groupBy, debounce} from 'underscore';
 
+// Flatten one level deep arrays
 function flatten(arr) {
   return Array.prototype.concat(...arr);
 }
@@ -11,33 +12,66 @@ export default class EqualHeight {
     // Set scope where to query elements from
     this.scope = scope;
 
-    // Query all elements with the same group name
-    this.groups = this.getGroups();
+    // Run the main logic
+    this.calculate();
 
+    // Bind events
+    this.bindEvents();
+  }
+
+  calculate(){
     // Create array of rows
     this.rows = this.getRows();
 
-    this.rows.forEach(rowItem => {
-      if (rowItem.length === 1) return;
+    // Create array of row items from the same group
+    this.groupedRowItems = this.rows.map((row) => {
+      return this.getGroups(row);
+    });
 
-    })
+    // Calculate tallest element from each row for the same group
+    this.groupedRowItems.forEach(row => row.forEach(this.setHeight));
   }
 
+  setHeight(items){
+
+    // Reset height, so we can calculate again
+    items.forEach(item => {
+      item.style.height = 'auto';
+    });
+
+    // Get tallest element
+    const maxHeight = Math.max(...items.map(item => {
+      return item.clientHeight;
+    }));
+
+    // Apply height to all elements in the group, on the same row.
+    items.forEach(item => {
+      item.style.height = maxHeight;
+    })
+  }
   /**
-   * Get items from the same group
+   * Get items from the same group in a row
    */
-  getGroups() {
+  getGroups(row) {
     return (
       [
-        // Remove duplicates from array
+        // Remove duplicate groupNames from array
         ...new Set(
-          Array.from(this.scope.querySelectorAll('[data-equal-height]')).map(item => {
-            return item.dataset.equalHeight;
-          }),
+          // Flatten one level deep arrays into one array.
+          flatten(
+            // Map over all the equalheight elements, so we can fetch all the different groups
+            row.map(rowItem => Array.from(rowItem.element.querySelectorAll('[data-equal-height]')).map(element => {
+              return element.dataset.equalHeight;
+            })),
+          )
         ),
-      ]
-      // Return all items within a group
-        .map(item => this.scope.querySelectorAll(`[data-equal-height="${item}"]`))
+      ].map((groupName) => {
+        return row.map(rowItem => {
+          // return an array from all the items in the same group
+          return rowItem.element.querySelector(`[data-equal-height="${groupName}"]`);
+        })
+      })
+
     );
   }
 
@@ -45,25 +79,24 @@ export default class EqualHeight {
    * Auto detect rows
    */
   getRows() {
-    return flatten(
-      // Loop over groups
-      this.groups.map(group => {
-        // Get values of objects
-        const grouped = Object.values(
-          // Group items to rows
-          groupBy(
-            Array.from(group).map(item => {
-              // Get the top position (this is used to group the items)
-              return {item: item, top: offset(item).top};
-            }),
-            'top',
-          ),
-        );
-        return grouped;
-      }),
-    );
+    return Object.values(groupBy(
+      Array.from(this.scope.querySelectorAll('.js-equal-height')).map(element => {
+        // Get the top position (this is used to group the elements)
+        return {element: element, top: offset(element).top};
+      }), 'top'));
   }
 
   bindEvents() {
+    // Re-apply on document loaded
+    window.onload = () => {
+      this.calculate();
+    };
+
+    // Re-apply on resize
+    window.addEventListener('resize', debounce(() => {
+      this.calculate();
+    }, 150));
   }
 }
+
+new EqualHeight();

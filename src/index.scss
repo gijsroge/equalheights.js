@@ -7,6 +7,14 @@ body{
   grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));
 }
 
-.grid *{
+[data-equal-height="title"]{
+  border: solid green;
+}
+
+[data-equal-height="body"]{
   border: solid red;
+}
+
+img{
+  max-width: 100%;
 }
