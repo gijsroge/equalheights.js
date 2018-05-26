@@ -10,7 +10,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 let libraryName = pkg.name;
 
 if (env === 'build') {
-  outputFile = `${libraryName}.min.[ext]`;
+  outputFile = `${libraryName}.min.js`;
 } else {
   outputFile = libraryName;
 }
@@ -18,7 +18,6 @@ if (env === 'build') {
 const config = {
   entry: `${__dirname}/src/index.js`,
   devtool: 'source-map',
-  mode: env === 'build' ? 'production' : 'development',
   output: {
     path: __dirname + '/lib',
     filename: outputFile,

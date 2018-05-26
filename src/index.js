@@ -8,28 +8,83 @@ function flatten(arr) {
 }
 
 export default class EqualHeight {
-  constructor({scope = document} = {}) {
+
+  constructor({scope = document, debounce = 0} = {}) {
     // Set scope where to query elements from
     this.scope = scope;
+    this.settings = {
+      debounce: debounce
+    };
+
+    // Detect support
+    this.detectSupport();
 
     // Run the main logic
-    this.calculate();
+    this.update();
 
     // Bind events
     this.bindEvents();
   }
 
-  calculate() {
+  detectSupport() {
+    this.IMAGES_LOADED_PLUGIN_ENABLED = typeof imagesLoaded !== 'undefined';
+  }
+
+  update({reset = false} = {}) {
+
+    /**
+     * Reset initial heights before calculating
+     */
+    if (reset) {
+      Array.from(this.scope.querySelectorAll('[data-equal-height]')).forEach(item => {
+        item.style.height = 'auto';
+      })
+    }
+
     // Create array of rows
     this.rows = this.getRows();
 
     // Create array of row items from the same group
-    this.groupedRowItems = this.rows.map((row) => {
+    this.groupedRowItems = this.rows.map(row => {
+
+      /*
+      Check if the row has any grouped items inside.
+      If not, just set the main element to equal heights.
+       */
+      const simpleRow = !row.filter(rowItem => {
+        return (rowItem.element.querySelectorAll('[data-equal-height]').length != 0);
+      }).length > 0;
+
+      if (simpleRow) {
+        return [row.map(rowItem => rowItem.element)];
+      }
+
       return this.getGroups(row);
     });
 
-    // Calculate tallest element from each row for the same group
-    this.groupedRowItems.forEach(row => row.forEach(this.setHeight));
+    // Set height after images are loaded in a row
+    if (this.IMAGES_LOADED_PLUGIN_ENABLED) {
+      this.groupedRowItems.forEach(row => {
+        row.forEach(rowItems => {
+          let hasImages = false;
+          rowItems.forEach(item => {
+            if (item.querySelectorAll('img').length != 0) hasImages = true;
+          });
+
+          /*
+            Enable imagesLoaded plugin, so we can check if all images of
+            the same group are loaded before setting the equal height.
+           */
+          this.setHeight(rowItems);
+          imagesLoaded(rowItems).on('done', () => {
+            this.setHeight(rowItems);
+          });
+        });
+      });
+    } else {
+      // Calculate tallest element from each row for the same group
+      this.groupedRowItems.forEach(row => row.forEach(this.setHeight));
+    }
   }
 
   /**
@@ -65,16 +120,25 @@ export default class EqualHeight {
             // Map over all the equalheight elements, so we can fetch all the different groups
             row.map(rowItem => Array.from(rowItem.element.querySelectorAll('[data-equal-height]')).map(element => {
               return element.dataset.equalHeight;
-            })),
+            }))
           )
         ),
-      ].map((groupName) => {
-        return row.map(rowItem => {
-          // return an array from all the items in the same group
-          return rowItem.element.querySelector(`[data-equal-height="${groupName}"]`);
+      ]
+
+        .map((groupName) => {
+          return row.map(rowItem => {
+            // return an array from all the items in the same group
+            return rowItem.element.querySelector(`[data-equal-height="${groupName}"]`);
+          })
         })
-      })
-    );
+    )
+
+    // Strip items that are null to compensate for incorrect markup.
+      .map(row => {
+        return row.filter(items => {
+          return (items !== null);
+        })
+      });
   }
 
   /**
@@ -91,14 +155,16 @@ export default class EqualHeight {
   bindEvents() {
     // Re-apply on document loaded
     window.onload = () => {
-      this.calculate();
+      this.update();
     };
 
     // Re-apply on resize
     window.addEventListener('resize', debounce(() => {
-      this.calculate();
-    }, 150));
+      this.update({reset: true});
+    }, this.settings.debounce));
+
   }
+
 }
 
 new EqualHeight();

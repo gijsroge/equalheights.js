@@ -15,6 +15,13 @@ body{
   border: solid red;
 }
 
+[data-equal-height="image"]{
+  border: solid purple;
+}
+
+.simple{
+  border: solid green;
+}
 img{
   max-width: 100%;
 }
