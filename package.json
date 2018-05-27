@@ -54,9 +54,7 @@
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^2.1.4",
     "webpack-dev-server": "^3.1.4",
-    "yargs": "^11.0.0"
-  },
-  "dependencies": {
+    "yargs": "^11.0.0",
     "tailwindcss": "^0.5.3"
   }
 }
