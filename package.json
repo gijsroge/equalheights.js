@@ -1,9 +1,9 @@
 {
-  "name": "EqualHeights.js",
+  "name": "equalheights.js",
   "version": "1.0.0",
   "description": "Equal height elements, autodetect rows, no dependencies, lightweight & fast.",
   "module": "src/index.js",
-  "main": "dist/EqualHeights.min.js",
+  "main": "dist/equalheights.min.js",
   "scripts": {
     "build": "webpack-cli --env build --mode production",
     "dev": "webpack-dev-server --progress --colors --watch --env dev --mode development",
@@ -23,9 +23,9 @@
   "author": "Gijs Rogé",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gijsroge/equalHeights.js/issues"
+    "url": "https://github.com/gijsroge/equalheights.js/issues"
   },
-  "homepage": "https://github.com/gijsroge/equalHeights.js",
+  "homepage": "https://github.com/gijsroge/equalheights.js",
   "devDependencies": {
     "autoprefixer": "^8.5.1",
     "babel-cli": "^6.26.0",

@@ -8,7 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-let libraryName = 'EqualHeights';
+let libraryName = 'equalheights';
 
 if (env === 'build') {
   outputFile = `${libraryName}.min.js`;
