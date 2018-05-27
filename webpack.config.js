@@ -8,7 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-let libraryName = 'EqualHeight';
+let libraryName = 'EqualHeights';
 
 if (env === 'build') {
   outputFile = `${libraryName}.min.js`;
@@ -20,7 +20,7 @@ const config = {
   entry: env === 'dev' ? `${__dirname}/dev/dev.js` : `${__dirname}/src/index.js`,
   devtool: 'source-map',
   output: {
-    path: __dirname + '/lib',
+    path: __dirname + '/dist',
     filename: outputFile,
     library: libraryName,
     libraryTarget: 'umd',
