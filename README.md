@@ -1,4 +1,4 @@
-# EqualHeight.js
+# EqualHeights.js
 
 Lightweight, es6 module to set equal height to html elements.
 

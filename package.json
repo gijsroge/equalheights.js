@@ -1,5 +1,5 @@
 {
-  "name": "EqualHeight.js",
+  "name": "EqualHeights.js",
   "version": "1.0.0",
   "description": "Equal height elements, autodetect rows, no dependencies, lightweight & fast.",
   "module": "src/index.js",
