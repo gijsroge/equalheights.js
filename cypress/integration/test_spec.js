@@ -1,8 +1,10 @@
-describe('Open test url', function() {
-  it('Opened webpack dev server', function() {
+describe('Open test url', function () {
+  it('Opened webpack dev server', function () {
     cy.visit('/')
   })
 });
-describe('Open test url', function() {
-cy.get('mainMenu').should('have.css', 'height', ...)
+describe('Test main functionality', function () {
+  it('has equal heights', function () {
+    cy.get('.js-equal-height [data-equal-height="title"]').should('have.css', 'height', height);
+  })
 });
