@@ -17,7 +17,7 @@ if (env === 'build') {
 }
 
 const config = {
-  entry: env === 'dev' ? `${__dirname}/src/demo.js` : `${__dirname}/src/index.js`,
+  entry: env === 'dev' ? `${__dirname}/dev/dev.js` : `${__dirname}/src/index.js`,
   devtool: 'source-map',
   output: {
     path: __dirname + '/lib',
@@ -46,7 +46,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Custom template',
-      template: 'index.html'
+      template: './dev/index.ejs'
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css",

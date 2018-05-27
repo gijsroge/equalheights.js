@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/gijsroge/equalHeight.js",
   "devDependencies": {
+    "autoprefixer": "^8.5.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
@@ -32,27 +33,30 @@
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-env": "^1.7.0",
     "chai": "^4.1.2",
-    "eslint": "^4.19.1",
-    "eslint-loader": "^2.0.0",
-    "webpack": "^4.8.3",
-    "webpack-cli": "^2.1.4",
-    "yargs": "^11.0.0"
-  },
-  "dependencies": {
-    "autoprefixer": "^8.5.1",
     "cypress": "^2.1.0",
     "debounce": "^1.1.0",
+    "eslint": "^4.19.1",
+    "eslint-loader": "^2.0.0",
     "group-by": "^0.0.1",
     "html-webpack-plugin": "^3.2.0",
     "http-server": "^0.11.1",
     "imagesloaded": "^4.1.4",
     "mini-css-extract-plugin": "^0.4.0",
     "offset": "^0.0.1",
+    "postcss-import": "^11.1.0",
     "postcss-loader": "^2.1.5",
+    "postcss-nested": "^3.0.0",
     "postcss-scss": "^1.0.5",
+    "rfs": "^7.1.1",
     "start-server-and-test": "^1.4.1",
     "style-loader": "^0.21.0",
+    "webpack": "^4.8.3",
     "webpack-bundle-analyzer": "^2.13.1",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-cli": "^2.1.4",
+    "webpack-dev-server": "^3.1.4",
+    "yargs": "^11.0.0"
+  },
+  "dependencies": {
+    "tailwindcss": "^0.5.3"
   }
 }

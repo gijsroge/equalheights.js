@@ -9,7 +9,7 @@ function flatten(arr) {
 
 export default class EqualHeight {
 
-  constructor({scope = document, debounce = 0} = {}) {
+  constructor({scope = document, debounce = 150} = {}) {
     // Set scope where to query elements from
     this.scope = scope;
     this.settings = {
