@@ -2,7 +2,8 @@
   "name": "EqualHeight.js",
   "version": "1.0.0",
   "description": "Equal height elements, autodetect rows, no dependencies, lightweight & fast.",
-  "main": "lib/library.js",
+  "module": "src/index.js",
+  "main": "lib/EqualHeight.min.js",
   "scripts": {
     "build": "webpack-cli --env build --mode production",
     "dev": "webpack-dev-server --progress --colors --watch --env dev --mode development",
