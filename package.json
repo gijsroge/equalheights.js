@@ -15,6 +15,7 @@
     "url": "https://github.com/krasimir/webpack-library-starter.git"
   },
   "keywords": [
+    "equalheights",
     "equalheight",
     "row",
     "auto"
@@ -22,9 +23,9 @@
   "author": "Gijs Rogé",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gijsroge/equalHeight.js/issues"
+    "url": "https://github.com/gijsroge/equalHeights.js/issues"
   },
-  "homepage": "https://github.com/gijsroge/equalHeight.js",
+  "homepage": "https://github.com/gijsroge/equalHeights.js",
   "devDependencies": {
     "autoprefixer": "^8.5.1",
     "babel-cli": "^6.26.0",
