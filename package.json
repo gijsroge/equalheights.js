@@ -1,13 +1,13 @@
 {
-  "name": "equalheights.js",
+  "name": "EqualHeight.js",
   "version": "1.0.0",
   "description": "Equal height elements, autodetect rows, no dependencies, lightweight & fast.",
   "main": "lib/library.js",
   "scripts": {
     "build": "webpack-cli --env build --mode production",
     "dev": "webpack-dev-server --progress --colors --watch --env dev --mode development",
-    "test": "mocha --require babel-core/register --colors ./test/*.spec.js",
-    "test:watch": "mocha --require babel-core/register --colors -w ./test/*.spec.js"
+    "cypress": "cypress run",
+    "test": "start-server-and-test dev http-get://localhost:8080 cypress"
   },
   "repository": {
     "type": "git",
@@ -34,21 +34,25 @@
     "chai": "^4.1.2",
     "eslint": "^4.19.1",
     "eslint-loader": "^2.0.0",
-    "mocha": "^5.2.0",
     "webpack": "^4.8.3",
     "webpack-cli": "^2.1.4",
     "yargs": "^11.0.0"
   },
   "dependencies": {
     "autoprefixer": "^8.5.1",
-    "document-offset": "^1.0.4",
+    "cypress": "^2.1.0",
+    "debounce": "^1.1.0",
+    "group-by": "^0.0.1",
     "html-webpack-plugin": "^3.2.0",
+    "http-server": "^0.11.1",
     "imagesloaded": "^4.1.4",
     "mini-css-extract-plugin": "^0.4.0",
+    "offset": "^0.0.1",
     "postcss-loader": "^2.1.5",
     "postcss-scss": "^1.0.5",
+    "start-server-and-test": "^1.4.1",
     "style-loader": "^0.21.0",
-    "underscore": "^1.9.0",
+    "webpack-bundle-analyzer": "^2.13.1",
     "webpack-dev-server": "^3.1.4"
   }
 }

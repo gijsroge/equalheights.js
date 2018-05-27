@@ -1,6 +1,6 @@
-import 'index.scss';
-import offset from 'document-offset';
-import {groupBy, debounce} from 'underscore';
+import offset from 'offset';
+import groupBy from 'group-by';
+import debounce from 'debounce';
 
 // Flatten one level deep arrays
 function flatten(arr) {
@@ -103,7 +103,7 @@ export default class EqualHeight {
 
     // Apply height to all elements in the group, on the same row.
     items.forEach(item => {
-      item.style.height = maxHeight;
+      item.style.height = `${maxHeight}px`;
     })
   }
 
@@ -155,7 +155,7 @@ export default class EqualHeight {
   bindEvents() {
     // Re-apply on document loaded
     window.onload = () => {
-      this.update();
+      this.update({reset: true});
     };
 
     // Re-apply on resize
@@ -166,5 +166,3 @@ export default class EqualHeight {
   }
 
 }
-
-new EqualHeight();

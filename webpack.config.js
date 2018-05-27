@@ -6,17 +6,18 @@ const env = require('yargs').argv.env; // use --env with webpack 2
 const pkg = require('./package.json');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-let libraryName = pkg.name;
+let libraryName = 'EqualHeight';
 
 if (env === 'build') {
   outputFile = `${libraryName}.min.js`;
 } else {
-  outputFile = libraryName;
+  outputFile = `${libraryName}.js`;
 }
 
 const config = {
-  entry: `${__dirname}/src/index.js`,
+  entry: env === 'dev' ? `${__dirname}/src/demo.js` : `${__dirname}/src/index.js`,
   devtool: 'source-map',
   output: {
     path: __dirname + '/lib',
@@ -50,7 +51,8 @@ const config = {
     new MiniCssExtractPlugin({
       filename: "[name].css",
       chunkFilename: "[id].css"
-    })
+    }),
+    /*new BundleAnalyzerPlugin()*/
   ]
 };
 
