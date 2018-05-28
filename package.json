@@ -36,15 +36,12 @@
     "babel-preset-env": "^1.7.0",
     "chai": "^4.1.2",
     "cypress": "^2.1.0",
-    "debounce": "^1.1.0",
     "eslint": "^4.19.1",
     "eslint-loader": "^2.0.0",
-    "group-by": "^0.0.1",
     "html-webpack-plugin": "^3.2.0",
     "http-server": "^0.11.1",
     "imagesloaded": "^4.1.4",
     "mini-css-extract-plugin": "^0.4.0",
-    "offset": "^0.0.1",
     "postcss-import": "^11.1.0",
     "postcss-loader": "^2.1.5",
     "postcss-nested": "^3.0.0",
@@ -58,5 +55,10 @@
     "webpack-dev-server": "^3.1.4",
     "yargs": "^11.0.0",
     "tailwindcss": "^0.5.3"
+  }, 
+  "dependencies":{
+    "offset": "^0.0.1",
+    "group-by": "^0.0.1",
+    "debounce": "^1.1.0"
   }
 }
