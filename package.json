@@ -1,6 +1,6 @@
 {
   "name": "equalheights.js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Equal height elements, autodetect rows, no dependencies, lightweight & fast.",
   "module": "src/index.js",
   "main": "dist/equalheights.min.js",
