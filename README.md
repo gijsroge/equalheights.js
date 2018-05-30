@@ -2,7 +2,7 @@
 
 Lightweight, es6 module to set equal height to html elements.
 
-[![Build Status](https://travis-ci.org/gijsroge/equalHeight.js.svg?branch=master)](https://travis-ci.org/gijsroge/equalHeight.js)
+[![Build Status](https://travis-ci.org/gijsroge/equalheights.js.svg?branch=master)](https://travis-ci.org/gijsroge/equalheights.js)
 
 ## Features
 
