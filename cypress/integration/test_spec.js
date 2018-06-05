@@ -5,6 +5,6 @@ describe('Open test url', function () {
 });
 describe('Test main functionality', function () {
   it('has equal heights', function () {
-    cy.get('.js-equal-height [data-equal-height="title"]').should('have.css', 'height', '288px');
+    cy.get('.js-equal-height [data-equal-height="title"]').should('have.css', 'height', '428px');
   })
 });
