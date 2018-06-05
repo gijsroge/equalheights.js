@@ -98,7 +98,7 @@ To disable this warning you can enable the suppress option. new EqualHeights({su
       });
     } else {
       // Calculate tallest element from each row for the same group
-      this.groupedRowItems.forEach(row => row.forEach.call(this, this.setHeight));
+      this.groupedRowItems.forEach(row => row.forEach(item => this.setHeight(item)));
     }
   }
 
@@ -129,7 +129,7 @@ To disable this warning you can enable the suppress option. new EqualHeights({su
           item.style.height = `${maxHeight}px`;
         }
       } else {
-
+        item.style.height = `${maxHeight}px`;
       }
 
     })
