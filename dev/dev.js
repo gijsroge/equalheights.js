@@ -1,4 +1,4 @@
 import './styles/index.scss';
-import EqualHeight from '../src/index';
+import EqualHeights from '../src/index';
 
-new EqualHeight({debounce: 0});
+new EqualHeights({debounce: 0, suppressWarnings: true});

@@ -9,12 +9,17 @@ function flatten(arr) {
 
 export default class EqualHeight {
 
-  constructor({scope = document, debounce = 150} = {}) {
+  constructor({scope = document, debounce = 150, suppressWarnings = false} = {}) {
     // Set scope where to query elements from
     this.scope = scope;
     this.settings = {
-      debounce: debounce
+      debounce,
+
+      // Suppresses warnings
+      suppressWarnings,
     };
+
+    this.warnUser();
 
     // Detect support
     this.detectSupport();
@@ -24,6 +29,16 @@ export default class EqualHeight {
 
     // Bind events
     this.bindEvents();
+  }
+
+  warnUser() {
+    if (!this.settings.suppressWarnings && this.settings.debounce === 0) {
+      console.warn(`============================ Important ============================ 
+
+Equalheights.js uses getComputedStyle and other expensive properties that causes reflows/repaints. I strongly recommend setting a debounce value to prevent laggy resizing experiences.
+        
+To disable this warning you can enable the suppress option. new EqualHeights({suppressWarnings: true});`)
+    }
   }
 
   detectSupport() {
@@ -98,13 +113,37 @@ export default class EqualHeight {
 
     // Get tallest element
     const maxHeight = Math.max(...items.map(item => {
-      return item.clientHeight;
+      return item.offsetHeight;
     }));
 
     // Apply height to all elements in the group, on the same row.
     items.forEach(item => {
-      item.style.height = `${maxHeight}px`;
+      if (item.lastElementChild !== null) {
+        const lastChildBottomMargin = parseInt(window.getComputedStyle(item.lastElementChild).marginBottom, 10);
+        const hasCollapsingMargins = this.checkIfCollapsingMargins(item);
+
+        if (hasCollapsingMargins) {
+          // has collapsed margin
+          item.style.height = `${lastChildBottomMargin + maxHeight}px`;
+        } else {
+          item.style.height = `${maxHeight}px`;
+        }
+      } else {
+        item.style.height = `${maxHeight}px`;
+      }
+
     })
+  }
+
+  checkIfCollapsingMargins(item) {
+    const itemY = offset(item).bottom;
+    const lastChildY = offset(item.lastElementChild).bottom;
+    console.log(itemY, lastChildY);
+    if (itemY === lastChildY) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   /**
