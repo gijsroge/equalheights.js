@@ -1,6 +1,6 @@
 {
   "name": "equalheights.js",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Equal height elements, autodetect rows, no dependencies, lightweight & fast.",
   "module": "src/index.js",
   "main": "dist/equalheights.min.js",
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/gijsroge/equalheights.js",
   "devDependencies": {
-    "autoprefixer": "^8.5.1",
+    "autoprefixer": "^8.6.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
@@ -35,7 +35,7 @@
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-env": "^1.7.0",
     "chai": "^4.1.2",
-    "cypress": "^2.1.0",
+    "cypress": "^3.0.1",
     "eslint": "^4.19.1",
     "eslint-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
@@ -49,16 +49,16 @@
     "rfs": "^7.1.1",
     "start-server-and-test": "^1.4.1",
     "style-loader": "^0.21.0",
-    "webpack": "^4.8.3",
+    "tailwindcss": "^0.5.3",
+    "webpack": "^4.11.0",
     "webpack-bundle-analyzer": "^2.13.1",
-    "webpack-cli": "^2.1.4",
+    "webpack-cli": "^3.0.2",
     "webpack-dev-server": "^3.1.4",
-    "yargs": "^11.0.0",
-    "tailwindcss": "^0.5.3"
+    "yargs": "^11.0.0"
   },
-  "dependencies":{
-    "offset": "^0.0.1",
+  "dependencies": {
+    "debounce": "^1.1.0",
     "group-by": "^0.0.1",
-    "debounce": "^1.1.0"
+    "offset": "^0.0.1"
   }
 }
