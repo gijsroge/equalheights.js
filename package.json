@@ -1,6 +1,6 @@
 {
   "name": "equalheights.js",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Equal height elements, autodetect rows, no dependencies, lightweight & fast.",
   "module": "src/index.js",
   "main": "dist/equalheights.min.js",
@@ -55,7 +55,7 @@
     "webpack-dev-server": "^3.1.4",
     "yargs": "^11.0.0",
     "tailwindcss": "^0.5.3"
-  }, 
+  },
   "dependencies":{
     "offset": "^0.0.1",
     "group-by": "^0.0.1",
