@@ -201,6 +201,11 @@ To disable this warning you can enable the suppress option. new EqualHeights({su
       this.update({reset: true});
     }, this.settings.debounce));
 
+    // Update equalheight when custom event is triggered.
+    document.addEventListener('equalheight:update', () => {
+      this.update({reset: true});
+    })
+
   }
 
 }
