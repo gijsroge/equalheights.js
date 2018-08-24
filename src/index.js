@@ -121,7 +121,7 @@ To disable this warning you can enable the suppress option. new EqualHeights({su
 
     // Apply height to all elements in the group, on the same row.
     items.forEach(item => {
-      if (item.lastElementChild !== null) {
+      if (tallestElement.lastElementChild !== null) {
         const lastChildBottomMargin = parseInt(window.getComputedStyle(tallestElement.lastElementChild).marginBottom, 10);
         const hasCollapsingMargins = this.checkIfCollapsingMargins(item);
 
