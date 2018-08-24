@@ -1,6 +1,6 @@
 {
   "name": "equalheights.js",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Equal height elements, autodetect rows, no dependencies, lightweight & fast.",
   "module": "src/index.js",
   "main": "dist/equalheights.min.js",
@@ -40,7 +40,6 @@
     "eslint-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
     "http-server": "^0.11.1",
-    "imagesloaded": "^4.1.4",
     "mini-css-extract-plugin": "^0.4.0",
     "postcss-import": "^11.1.0",
     "postcss-loader": "^2.1.5",

@@ -33,10 +33,10 @@ export default class EqualHeight {
 
   warnUser() {
     if (!this.settings.suppressWarnings && this.settings.debounce === 0) {
-      console.warn(`============================ Important ============================ 
+      console.warn(`============================ Important ============================
 
 Equalheights.js uses getComputedStyle and other expensive properties that causes reflows/repaints. I strongly recommend setting a debounce value to prevent laggy resizing experiences.
-        
+
 To disable this warning you can enable the suppress option. new EqualHeights({suppressWarnings: true});`)
     }
   }
@@ -111,16 +111,20 @@ To disable this warning you can enable the suppress option. new EqualHeights({su
       item.style.height = 'auto';
     });
 
+    let tallestElement = null;
+
     // Get tallest element
     const maxHeight = Math.max(...items.map(item => {
+      tallestElement = item;
       return item.offsetHeight;
     }));
 
     // Apply height to all elements in the group, on the same row.
     items.forEach(item => {
       if (item.lastElementChild !== null) {
-        const lastChildBottomMargin = parseInt(window.getComputedStyle(item.lastElementChild).marginBottom, 10);
+        const lastChildBottomMargin = parseInt(window.getComputedStyle(tallestElement.lastElementChild).marginBottom, 10);
         const hasCollapsingMargins = this.checkIfCollapsingMargins(item);
+
 
         if (hasCollapsingMargins) {
           // has collapsed margin
