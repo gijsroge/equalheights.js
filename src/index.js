@@ -9,7 +9,7 @@ function flatten(arr) {
 
 export default class EqualHeight {
 
-  constructor({scope = document, debounce = 150, suppressWarnings = false} = {}) {
+  constructor({ scope = document, debounce = 150, suppressWarnings = false } = {}) {
     // Set scope where to query elements from
     this.scope = scope;
     this.settings = {
@@ -45,7 +45,7 @@ To disable this warning you can enable the suppress option. new EqualHeights({su
     this.IMAGES_LOADED_PLUGIN_ENABLED = typeof imagesLoaded !== 'undefined';
   }
 
-  update({reset = false} = {}) {
+  update({ reset = false } = {}) {
 
     /**
      * Reset initial heights before calculating
@@ -111,32 +111,13 @@ To disable this warning you can enable the suppress option. new EqualHeights({su
       item.style.height = 'auto';
     });
 
-    let tallestElement = null;
-
     // Get tallest element
     const maxHeight = Math.max(...items.map(item => {
-      tallestElement = item;
       return item.offsetHeight;
     }));
 
     // Apply height to all elements in the group, on the same row.
-    items.forEach(item => {
-      if (tallestElement.lastElementChild !== null) {
-        const lastChildBottomMargin = parseInt(window.getComputedStyle(tallestElement.lastElementChild).marginBottom, 10);
-        const hasCollapsingMargins = this.checkIfCollapsingMargins(item);
-
-
-        if (hasCollapsingMargins) {
-          // has collapsed margin
-          item.style.height = `${lastChildBottomMargin + maxHeight}px`;
-        } else {
-          item.style.height = `${maxHeight}px`;
-        }
-      } else {
-        item.style.height = `${maxHeight}px`;
-      }
-
-    })
+    items.forEach(item => item.style.height = `${maxHeight}px`);
   }
 
   checkIfCollapsingMargins(item) {
@@ -175,7 +156,7 @@ To disable this warning you can enable the suppress option. new EqualHeights({su
         })
     )
 
-    // Strip items that are null to compensate for incorrect markup.
+      // Strip items that are null to compensate for incorrect markup.
       .map(row => {
         return row.filter(items => {
           return (items !== null);
@@ -190,24 +171,24 @@ To disable this warning you can enable the suppress option. new EqualHeights({su
     return Object.values(groupBy(
       Array.from(this.scope.querySelectorAll('.js-equal-height')).map(element => {
         // Get the top position (this is used to group the elements)
-        return {element: element, top: offset(element).top};
+        return { element: element, top: offset(element).top };
       }), 'top'));
   }
 
   bindEvents() {
     // Re-apply on document loaded
     window.onload = () => {
-      this.update({reset: true});
+      this.update({ reset: true });
     };
 
     // Re-apply on resize
     window.addEventListener('resize', debounce(() => {
-      this.update({reset: true});
+      this.update({ reset: true });
     }, this.settings.debounce));
 
     // Update equalheight when custom event is triggered.
     document.addEventListener('equalheight:update', () => {
-      this.update({reset: true});
+      this.update({ reset: true });
     })
 
   }
