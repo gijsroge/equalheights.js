@@ -142,7 +142,7 @@ To disable this warning you can enable the suppress option. new EqualHeights({su
           flatten(
             // Map over all the equalheight elements, so we can fetch all the different groups
             row.map(rowItem => Array.from(rowItem.element.querySelectorAll('[data-equal-height]')).map(element => {
-              return element.dataset.equalHeight;
+              return element.getAttribute("data-equal-height");
             }))
           )
         ),
